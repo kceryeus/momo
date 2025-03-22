@@ -1,3 +1,5 @@
+@import 'mobile-nav.css';
+
 /* Navigation Bar */
 .navbar {
     position: fixed;
@@ -46,10 +48,10 @@
     background-color: #007AFF;
     color: #fff;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1.5rem;
     border-radius: 8px;
     cursor: pointer;
-    font-weight: 500;
+    font-size: 1rem;
     transition: background-color 0.3s ease;
 }
 
@@ -103,48 +105,38 @@
     color: #007AFF;
 }
 
-/* Settings Layout */
+/* Settings Container */
 .settings-container {
-    padding: 2rem;
-    margin-top: 70px;
-    min-height: calc(100vh - 70px);
-    background-color: #f8f9fa;
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
-/* Settings Header */
 .settings-header {
     margin-bottom: 2rem;
 }
 
 .settings-header h1 {
-    margin: 0 0 0.5rem;
+    margin-bottom: 0.5rem;
     color: #333;
-    font-size: 2rem;
 }
 
 .settings-header p {
     color: #666;
-    margin: 0;
 }
 
-/* Settings Content */
-.settings-content {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
+/* Settings Sections */
 .settings-section {
     margin-bottom: 2rem;
 }
 
 .settings-section h2 {
-    margin: 0 0 1rem;
+    margin-bottom: 1rem;
     color: #333;
-    font-size: 1.5rem;
 }
 
 .settings-card {
-    background: #fff;
+    background-color: #fff;
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -154,11 +146,7 @@
     border: 1px solid #dc3545;
 }
 
-.settings-card.danger h3 {
-    color: #dc3545;
-}
-
-/* Form Styles */
+/* Form Groups */
 .form-group {
     margin-bottom: 1.5rem;
 }
@@ -166,36 +154,31 @@
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #333;
+    color: #666;
     font-weight: 500;
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"],
-.form-group input[type="tel"],
-.form-group input[type="password"],
-.form-group select {
+.form-group input[type="tel"] {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 8px;
-    font-size: 0.9rem;
-    color: #333;
+    font-size: 1rem;
 }
 
-.form-group input:focus,
-.form-group select:focus {
+.form-group input:focus {
     border-color: #007AFF;
     outline: none;
 }
 
-/* Checkbox Style */
+/* Checkbox Labels */
 .checkbox-label {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     cursor: pointer;
-    color: #333;
 }
 
 .checkbox-label input[type="checkbox"] {
@@ -203,15 +186,15 @@
     height: 18px;
 }
 
-/* Danger Zone */
+/* Buttons */
 .btn-danger {
     background-color: #dc3545;
     color: #fff;
     border: none;
-    padding: 0.5rem 1rem;
+    padding: 0.8rem 1.5rem;
     border-radius: 8px;
     cursor: pointer;
-    font-weight: 500;
+    font-size: 1rem;
     transition: background-color 0.3s ease;
 }
 
@@ -222,10 +205,28 @@
 /* Responsive Design */
 @media (max-width: 768px) {
     .settings-container {
+        margin: 1rem auto;
+    }
+
+    .settings-header {
+        margin-bottom: 1.5rem;
+    }
+
+    .settings-section {
+        margin-bottom: 1.5rem;
+    }
+
+    .settings-card {
         padding: 1rem;
     }
 
-    .settings-content {
-        padding: 0 1rem;
+    .form-group {
+        margin-bottom: 1rem;
+    }
+
+    .btn-primary,
+    .btn-danger {
+        width: 100%;
+        padding: 1rem;
     }
 } 

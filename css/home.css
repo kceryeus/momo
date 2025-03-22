@@ -1,4 +1,6 @@
-/* Home Page Layout */
+@import 'mobile-nav.css';
+
+/* Home Container */
 .home-container {
     display: grid;
     grid-template-columns: 1fr 300px;
@@ -9,9 +11,9 @@
     background-color: #f8f9fa;
 }
 
-/* Main Content Area */
+/* Main Content */
 .main-content {
-    background: #fff;
+    background-color: #fff;
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -27,7 +29,6 @@
 .content-header h2 {
     margin: 0;
     color: #333;
-    font-size: 1.5rem;
 }
 
 .header-actions {
@@ -38,50 +39,45 @@
 /* Action Cards */
 .action-cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-bottom: 2rem;
 }
 
 .action-card {
-    background: #fff;
+    background-color: #fff;
     border-radius: 12px;
-    padding: 2rem;
-    text-align: center;
-    cursor: pointer;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1.5rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    border: 1px solid #e3f2fd;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    text-align: center;
 }
 
 .action-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-color: #007AFF;
 }
 
 .action-icon {
-    width: 80px;
-    height: 80px;
-    margin: 0 auto 1.5rem;
+    width: 60px;
+    height: 60px;
+    background-color: #e3f2fd;
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 2rem;
-    background-color: #e3f2fd;
+    margin: 0 auto 1rem;
     color: #007AFF;
+    font-size: 1.5rem;
 }
 
 .action-card h3 {
     margin: 0 0 0.5rem;
-    font-size: 1.25rem;
     color: #333;
 }
 
 .action-card p {
     margin: 0;
-    font-size: 0.9rem;
     color: #666;
 }
 
@@ -93,6 +89,12 @@
 .recent-documents-section h3 {
     margin-bottom: 1.5rem;
     color: #333;
+}
+
+.document-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 1.5rem;
 }
 
 /* Right Sidebar */
@@ -109,8 +111,8 @@
 }
 
 .map-section h3 {
-    color: #333;
     margin-bottom: 1rem;
+    color: #333;
 }
 
 .map-container {
@@ -165,20 +167,18 @@
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
-    color: #333;
+    color: #666;
     font-weight: 500;
 }
 
-.form-group input[type="text"],
-.form-group input[type="date"],
+.form-group input,
 .form-group select,
 .form-group textarea {
     width: 100%;
     padding: 0.8rem;
     border: 1px solid #ddd;
     border-radius: 8px;
-    font-size: 0.9rem;
-    color: #333;
+    font-size: 1rem;
 }
 
 .form-group input:focus,
@@ -188,11 +188,23 @@
     outline: none;
 }
 
-/* Date Range Input */
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+/* Date Range */
 .date-range {
     display: flex;
-    gap: 1rem;
     align-items: center;
+    gap: 1rem;
 }
 
 .date-range input {
@@ -201,20 +213,6 @@
 
 .date-range span {
     color: #666;
-}
-
-/* Checkbox Style */
-.checkbox-label {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    cursor: pointer;
-    color: #333;
-}
-
-.checkbox-label input[type="checkbox"] {
-    width: 18px;
-    height: 18px;
 }
 
 /* Responsive Design */
@@ -231,20 +229,40 @@
 @media (max-width: 768px) {
     .home-container {
         padding: 1rem;
+        margin-top: 60px;
     }
-    
+
     .content-header {
         flex-direction: column;
         gap: 1rem;
+        text-align: center;
     }
-    
+
     .header-actions {
         width: 100%;
-        justify-content: space-between;
+        justify-content: center;
     }
-    
+
     .action-cards {
         grid-template-columns: 1fr;
+    }
+
+    .document-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .modal-content {
+        margin: 1rem;
+        padding: 1rem;
+    }
+
+    .date-range {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .date-range span {
+        display: none;
     }
 }
 

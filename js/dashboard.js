@@ -336,6 +336,103 @@ document.getElementById('logoutBtn').addEventListener('click', () => {
     window.location.href = 'index.html';
 });
 
+// Mobile menu handling
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+const mobileNav = document.getElementById('mobileNav');
+
+mobileMenuBtn.addEventListener('click', () => {
+    mobileNav.classList.add('active');
+    document.body.style.overflow = 'hidden';
+});
+
+closeMobileMenuBtn.addEventListener('click', () => {
+    mobileNav.classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+// Close mobile menu when clicking outside
+mobileNav.addEventListener('click', (e) => {
+    if (e.target === mobileNav) {
+        mobileNav.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+});
+
+// Mobile filter handling
+document.getElementById('mobileApplyFilters').addEventListener('click', () => {
+    const type = document.getElementById('mobileDocumentTypeFilter').value;
+    const country = document.getElementById('mobileCountryFilter').value;
+    const neighborhood = document.getElementById('mobileNeighborhoodFilter').value;
+    const date = document.getElementById('mobileDateFilter').value;
+    const status = document.getElementById('mobileStatusFilter').value;
+
+    let filtered = [...mockDocuments];
+
+    if (type) {
+        filtered = filtered.filter(doc => doc.type === type);
+    }
+
+    if (country) {
+        filtered = filtered.filter(doc => doc.location.country === country);
+    }
+
+    if (neighborhood) {
+        filtered = filtered.filter(doc => 
+            doc.location.neighborhood.toLowerCase().includes(neighborhood.toLowerCase())
+        );
+    }
+
+    if (date) {
+        const today = new Date();
+        filtered = filtered.filter(doc => {
+            const docDate = new Date(doc.dateLost);
+            switch (date) {
+                case 'today':
+                    return docDate.toDateString() === today.toDateString();
+                case 'week':
+                    const weekAgo = new Date(today.setDate(today.getDate() - 7));
+                    return docDate >= weekAgo;
+                case 'month':
+                    const monthAgo = new Date(today.setMonth(today.getMonth() - 1));
+                    return docDate >= monthAgo;
+                case 'year':
+                    const yearAgo = new Date(today.setFullYear(today.getFullYear() - 1));
+                    return docDate >= yearAgo;
+            }
+        });
+    }
+
+    if (status) {
+        filtered = filtered.filter(doc => doc.status === status);
+    }
+
+    renderDocuments(filtered);
+    mobileNav.classList.remove('active');
+    document.body.style.overflow = '';
+});
+
+// Sync mobile and desktop filter values
+function syncFilters() {
+    const desktopFilters = ['documentTypeFilter', 'countryFilter', 'neighborhoodFilter', 'dateFilter', 'statusFilter'];
+    const mobileFilters = ['mobileDocumentTypeFilter', 'mobileCountryFilter', 'mobileNeighborhoodFilter', 'mobileDateFilter', 'mobileStatusFilter'];
+
+    desktopFilters.forEach((desktopId, index) => {
+        const desktopElement = document.getElementById(desktopId);
+        const mobileElement = document.getElementById(mobileFilters[index]);
+
+        if (desktopElement && mobileElement) {
+            desktopElement.addEventListener('change', () => {
+                mobileElement.value = desktopElement.value;
+            });
+
+            mobileElement.addEventListener('change', () => {
+                desktopElement.value = mobileElement.value;
+            });
+        }
+    });
+}
+
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     // Check authentication
@@ -352,6 +449,9 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('sortByDistance').addEventListener('click', () => sortDocuments('distance'));
     document.getElementById('sortByDate').addEventListener('click', () => sortDocuments('date'));
     document.getElementById('shareLocation').addEventListener('click', shareLocation);
+
+    // Sync filters
+    syncFilters();
 });
 
 // Share location
