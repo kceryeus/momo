@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Momo Document Recovery - Home</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="home.html">Momo</a>
+        </div>
+        <div class="nav-links">
+            <a href="home.html" class="active">Home</a>
+            <a href="#">My Documents</a>
+            <a href="dashboard.html">Browse Feed</a>
+            <button class="btn-primary" onclick="openUploadModal()">Report Lost</button>
+        </div>
+        <div class="user-menu">
+            <img src="https://via.placeholder.com/40" alt="User Avatar" class="user-avatar">
+            <div class="dropdown-menu">
+                <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="home-container">
+        <div class="main-content">
+            <div class="content-header">
+                <h2>Welcome back, <span id="userName">User</span>!</h2>
+                <div class="header-actions">
+                    <button class="btn-secondary" onclick="refreshDocuments()">
+                        <i class="fas fa-sync"></i> Refresh
+                    </button>
+                </div>
+            </div>
+
+            <!-- Action Cards -->
+            <div class="action-cards">
+                <div class="action-card" onclick="openUploadModal()">
+                    <div class="action-icon">
+                        <i class="fas fa-upload"></i>
+                    </div>
+                    <h3>Upload Documents</h3>
+                    <p>Store your important documents securely</p>
+                </div>
+                <div class="action-card" onclick="openPostModal()">
+                    <div class="action-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3>Post My Lost Documents</h3>
+                    <p>Share your lost documents on the feed</p>
+                </div>
+                <div class="action-card" onclick="openSearchModal()">
+                    <div class="action-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Search for Lost Documents</h3>
+                    <p>Search through feed or private documents</p>
+                </div>
+            </div>
+
+            <!-- Recent Documents -->
+            <div class="recent-documents-section">
+                <h3>Recent Documents</h3>
+                <div class="document-cards" id="recentDocuments">
+                    <!-- Documents will be loaded dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Sidebar -->
+        <div class="right-sidebar">
+            <div class="map-section">
+                <h3>Document Locations</h3>
+                <div class="map-container">
+                    <!-- Map will be loaded here -->
+                </div>
+            </div>
+            <div class="quick-actions">
+                <button class="btn-primary" onclick="openUploadModal()">
+                    <i class="fas fa-plus"></i> New Document
+                </button>
+                <button class="btn-secondary" onclick="openSearchModal()">
+                    <i class="fas fa-search"></i> Search Documents
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upload Modal -->
+    <div id="uploadModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeUploadModal()">&times;</span>
+            <h2>Upload Document</h2>
+            <form id="uploadForm" onsubmit="handleUpload(event)">
+                <div class="form-group">
+                    <label for="documentType">Document Type</label>
+                    <select id="documentType" required>
+                        <option value="">Select type</option>
+                        <option value="id">ID Card</option>
+                        <option value="passport">Passport</option>
+                        <option value="license">Driver's License</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="documentTitle">Title</label>
+                    <input type="text" id="documentTitle" required>
+                </div>
+                <div class="form-group">
+                    <label for="documentImage">Document Image</label>
+                    <input type="file" id="documentImage" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label for="documentDescription">Description</label>
+                    <textarea id="documentDescription" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="documentLocation">Location</label>
+                    <input type="text" id="documentLocation">
+                </div>
+                <div class="form-group">
+                    <label for="dateLost">Date Lost</label>
+                    <input type="date" id="dateLost">
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="postToFeed">
+                        Post to public feed
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary">Upload Document</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeSearchModal()">&times;</span>
+            <h2>Search Documents</h2>
+            <form id="searchForm" onsubmit="handleSearch(event)">
+                <div class="form-group">
+                    <label for="searchQuery">Search Query</label>
+                    <input type="text" id="searchQuery" placeholder="Enter keywords...">
+                </div>
+                <div class="form-group">
+                    <label for="documentTypeFilter">Document Type</label>
+                    <select id="documentTypeFilter">
+                        <option value="">All Types</option>
+                        <option value="id">ID Card</option>
+                        <option value="passport">Passport</option>
+                        <option value="license">Driver's License</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="dateRange">Date Range</label>
+                    <div class="date-range">
+                        <input type="date" id="startDate">
+                        <span>to</span>
+                        <input type="date" id="endDate">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="includePrivate">
+                        Include private documents
+                    </label>
+                </div>
+                <button type="submit" class="btn-primary">Search</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/home.js"></script>
+</body>
+</html> 

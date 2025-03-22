@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Momo Document Recovery</title>
+    <link rel="stylesheet" href="css/settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="home.html">Momo</a>
+        </div>
+        <div class="nav-links">
+            <a href="home.html">Home</a>
+            <a href="dashboard.html">Feed</a>
+            <a href="profile.html">Profile</a>
+            <a href="settings.html" class="active">Settings</a>
+        </div>
+        <div class="user-menu">
+            <img src="https://via.placeholder.com/40" alt="User Avatar" class="user-avatar">
+            <div class="dropdown-menu">
+                <a href="profile.html"><i class="fas fa-user"></i> Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="#" onclick="logout()"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Settings Container -->
+    <div class="settings-container">
+        <div class="settings-header">
+            <h1>Settings</h1>
+            <p>Manage your account settings and preferences</p>
+        </div>
+
+        <div class="settings-content">
+            <!-- Profile Settings -->
+            <div class="settings-section">
+                <h2>Profile Settings</h2>
+                <div class="settings-card">
+                    <form id="profileForm">
+                        <div class="form-group">
+                            <label for="fullName">Full Name</label>
+                            <input type="text" id="fullName" name="fullName" value="John Doe">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" name="email" value="john.doe@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" value="+1 234 567 8900">
+                        </div>
+                        <button type="submit" class="btn-primary">Save Changes</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="settings-section">
+                <h2>Notification Settings</h2>
+                <div class="settings-card">
+                    <form id="notificationForm">
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="emailNotifications" checked>
+                                Email Notifications
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="pushNotifications" checked>
+                                Push Notifications
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="smsNotifications">
+                                SMS Notifications
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary">Save Preferences</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Privacy Settings -->
+            <div class="settings-section">
+                <h2>Privacy Settings</h2>
+                <div class="settings-card">
+                    <form id="privacyForm">
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="profileVisibility" checked>
+                                Make Profile Public
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="documentVisibility" checked>
+                                Show Documents in Feed
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <label class="checkbox-label">
+                                <input type="checkbox" name="locationVisibility">
+                                Show Location in Documents
+                            </label>
+                        </div>
+                        <button type="submit" class="btn-primary">Save Privacy Settings</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Danger Zone -->
+            <div class="settings-section">
+                <h2>Danger Zone</h2>
+                <div class="settings-card danger">
+                    <h3>Delete Account</h3>
+                    <p>Once you delete your account, there is no going back. Please be certain.</p>
+                    <button class="btn-danger">Delete Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/settings.js"></script>
+</body>
+</html> 

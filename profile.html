@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Momo Document Recovery</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/profile-settings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="home.html">Momo</a>
+        </div>
+        <div class="nav-links">
+            <a href="home.html">My Documents</a>
+            <a href="feed.html">Browse Feed</a>
+            <a href="#" id="uploadBtn">Report Lost</a>
+        </div>
+        <div class="user-menu">
+            <img src="images/avatar.jpg" alt="User Avatar" class="avatar">
+            <div class="dropdown-menu">
+                <a href="profile.html" class="active"><i class="fas fa-user"></i> Profile</a>
+                <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
+                <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <!-- Profile Header -->
+        <div class="profile-header">
+            <div class="profile-cover">
+                <img src="images/cover.jpg" alt="Profile Cover">
+            </div>
+            <div class="profile-info">
+                <div class="profile-avatar">
+                    <img src="images/avatar.jpg" alt="Profile Picture">
+                    <button class="btn-secondary edit-avatar">
+                        <i class="fas fa-camera"></i>
+                    </button>
+                </div>
+                <div class="profile-details">
+                    <h1>John Doe</h1>
+                    <p class="location"><i class="fas fa-map-marker-alt"></i> New York, USA</p>
+                    <p class="member-since">Member since March 2024</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Content -->
+        <div class="profile-content">
+            <!-- Left Column -->
+            <div class="profile-left">
+                <div class="profile-card">
+                    <h3>About Me</h3>
+                    <p>I'm a frequent traveler who occasionally misplaces important documents. I use Momo to help recover them and assist others in finding their lost documents.</p>
+                </div>
+
+                <div class="profile-card">
+                    <h3>Contact Information</h3>
+                    <ul class="contact-info">
+                        <li><i class="fas fa-envelope"></i> john.doe@example.com</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-4567</li>
+                        <li><i class="fas fa-globe"></i> www.johndoe.com</li>
+                    </ul>
+                </div>
+
+                <div class="profile-card">
+                    <h3>Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <span class="stat-number">12</span>
+                            <span class="stat-label">Documents Reported</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">8</span>
+                            <span class="stat-label">Documents Found</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">4</span>
+                            <span class="stat-label">Documents Recovered</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="profile-right">
+                <div class="profile-card">
+                    <h3>Recent Activity</h3>
+                    <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-file-alt"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p>Reported lost passport</p>
+                                <span class="activity-time">2 hours ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p>Found a driver's license</p>
+                                <span class="activity-time">1 day ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p>Updated location</p>
+                                <span class="activity-time">2 days ago</span>
+                            </div>
+                        </div>
+                        <div class="activity-item">
+                            <div class="activity-icon">
+                                <i class="fas fa-user-plus"></i>
+                            </div>
+                            <div class="activity-content">
+                                <p>Connected with Sarah Smith</p>
+                                <span class="activity-time">3 days ago</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <h3>Recent Documents</h3>
+                    <div class="recent-documents">
+                        <div class="document-item">
+                            <img src="images/documents/passport.jpg" alt="Passport">
+                            <div class="document-info">
+                                <h4>US Passport</h4>
+                                <p>Lost on March 15, 2024</p>
+                            </div>
+                        </div>
+                        <div class="document-item">
+                            <img src="images/documents/drivers-license.jpg" alt="Driver's License">
+                            <div class="document-info">
+                                <h4>Driver's License</h4>
+                                <p>Found on March 14, 2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/profile.js"></script>
+</body>
+</html> 

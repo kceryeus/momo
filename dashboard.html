@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Momo Document Recovery</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.png" alt="Momo Document Recovery Logo">
+                </a>
+            </div>
+            <div class="nav-links">
+                <a href="#" class="active">Feed</a>
+                <a href="#" id="uploadBtn">Upload</a>
+                <a href="home.html" id="myDocumentsBtn">My Documents</a>
+                <div class="user-menu">
+                    <img src="images/default-avatar.png" alt="User Avatar" class="user-avatar">
+                    <div class="dropdown-menu">
+                        <a href="profile.html" id="profileBtn">Profile</a>
+                        <a href="settings.html" id="settingsBtn">Settings</a>
+                        <a href="#" id="logoutBtn">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="filter-section">
+                <h3>Filters</h3>
+                <div class="filter-group">
+                    <label>Document Type</label>
+                    <select id="documentTypeFilter">
+                        <option value="">All Types</option>
+                        <option value="id">ID Documents</option>
+                        <option value="passport">Passports</option>
+                        <option value="drivers">Driver's License</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Location</label>
+                    <select id="countryFilter">
+                        <option value="">All Countries</option>
+                        <option value="US">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="CA">Canada</option>
+                        <!-- Add more countries -->
+                    </select>
+                    <input type="text" id="neighborhoodFilter" placeholder="Neighborhood">
+                </div>
+                <div class="filter-group">
+                    <label>Date Lost</label>
+                    <select id="dateFilter">
+                        <option value="">Any Time</option>
+                        <option value="today">Today</option>
+                        <option value="week">This Week</option>
+                        <option value="month">This Month</option>
+                        <option value="year">This Year</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Status</label>
+                    <select id="statusFilter">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="found">Found</option>
+                        <option value="expired">Expired</option>
+                    </select>
+                </div>
+                <button class="btn-primary" id="applyFilters">Apply Filters</button>
+            </div>
+        </aside>
+
+        <!-- Main Feed -->
+        <main class="main-feed">
+            <div class="feed-header">
+                <h2>Lost Documents Feed</h2>
+                <div class="feed-actions">
+                    <button class="btn-secondary" id="sortByDistance">
+                        <i class="fas fa-map-marker-alt"></i> Sort by Distance
+                    </button>
+                    <button class="btn-secondary" id="sortByDate">
+                        <i class="fas fa-calendar"></i> Sort by Date
+                    </button>
+                </div>
+            </div>
+
+            <!-- Document Cards Container -->
+            <div class="document-cards" id="documentFeed">
+                <!-- Document cards will be dynamically inserted here -->
+            </div>
+
+            <!-- Load More Button -->
+            <button class="btn-primary load-more" id="loadMore">
+                Load More Documents
+            </button>
+        </main>
+
+        <!-- Right Sidebar -->
+        <aside class="right-sidebar">
+            <div class="map-section">
+                <h3>Nearby Documents</h3>
+                <div id="map" class="map-container">
+                    <!-- Map will be initialized here -->
+                </div>
+            </div>
+            <div class="quick-actions">
+                <h3>Quick Actions</h3>
+                <button class="btn-primary" id="reportFound">
+                    <i class="fas fa-check-circle"></i> Report Found Document
+                </button>
+                <button class="btn-secondary" id="shareLocation">
+                    <i class="fas fa-share-alt"></i> Share My Location
+                </button>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Upload Modal -->
+    <div class="modal" id="uploadModal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Upload Lost Document</h2>
+            <form id="uploadForm">
+                <div class="input-group">
+                    <label>Document Type</label>
+                    <select required>
+                        <option value="">Select Type</option>
+                        <option value="id">ID Document</option>
+                        <option value="passport">Passport</option>
+                        <option value="drivers">Driver's License</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Document Details</label>
+                    <input type="text" placeholder="Document Number" required>
+                    <input type="text" placeholder="Document Name" required>
+                </div>
+                <div class="input-group">
+                    <label>Location Lost</label>
+                    <input type="text" placeholder="Address" required>
+                    <input type="text" placeholder="Neighborhood" required>
+                </div>
+                <div class="input-group">
+                    <label>Date Lost</label>
+                    <input type="date" required>
+                </div>
+                <div class="input-group">
+                    <label>Additional Details</label>
+                    <textarea placeholder="Describe any identifying features or circumstances"></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Upload Image</label>
+                    <input type="file" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn-primary">Submit Report</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB41DRUbKWJHPxaFjMAwdrzWzbVKartNGg"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html> 
