@@ -9,8 +9,7 @@ const mockDocuments = [
             address: '123 Main St',
             neighborhood: 'Downtown',
             city: 'New York',
-            country: 'US',
-            coordinates: { lat: 40.7128, lng: -74.0060 }
+            country: 'US'
         },
         dateLost: '2024-03-15',
         status: 'active',
@@ -182,77 +181,6 @@ const mockDocuments = [
     }
 ];
 
-// Initialize map
-let map;
-let markers = [];
-
-function initMap() {
-    // Default center (New York)
-    const defaultCenter = { lat: 40.7128, lng: -74.0060 };
-    
-    map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 12,
-        center: defaultCenter,
-        styles: [
-            {
-                featureType: 'poi',
-                elementType: 'labels',
-                stylers: [{ visibility: 'off' }]
-            }
-        ]
-    });
-
-    // Add markers for documents
-    updateMapMarkers(mockDocuments);
-}
-
-// Update map markers
-function updateMapMarkers(documents) {
-    // Clear existing markers
-    markers.forEach(marker => marker.setMap(null));
-    markers = [];
-
-    documents.forEach(doc => {
-        const marker = new google.maps.Marker({
-            position: doc.location.coordinates,
-            map: map,
-            title: doc.title,
-            icon: {
-                url: getMarkerIcon(doc.type),
-                scaledSize: new google.maps.Size(30, 30)
-            }
-        });
-
-        // Add info window
-        const infoWindow = new google.maps.InfoWindow({
-            content: `
-                <div class="map-info-window">
-                    <h4>${doc.title}</h4>
-                    <p>${doc.location.address}</p>
-                    <p>Lost: ${formatDate(doc.dateLost)}</p>
-                </div>
-            `
-        });
-
-        marker.addListener('click', () => {
-            infoWindow.open(map, marker);
-        });
-
-        markers.push(marker);
-    });
-}
-
-// Get marker icon based on document type
-function getMarkerIcon(type) {
-    const icons = {
-        passport: 'images/markers/passport.png',
-        id: 'images/markers/id.png',
-        drivers: 'images/markers/drivers.png',
-        other: 'images/markers/other.png'
-    };
-    return icons[type] || icons.other;
-}
-
 // Render document cards
 function renderDocuments(documents) {
     const container = document.getElementById('documentFeed');
@@ -341,7 +269,6 @@ function filterDocuments() {
     }
 
     renderDocuments(filtered);
-    updateMapMarkers(filtered);
 }
 
 // Sort documents
@@ -358,7 +285,6 @@ function sortDocuments(criteria) {
     }
 
     renderDocuments(sorted);
-    updateMapMarkers(sorted);
 }
 
 // Modal handling
@@ -418,9 +344,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
     }
 
-    // Initialize map
-    initMap();
-
     // Render initial documents
     renderDocuments(mockDocuments);
 
@@ -436,9 +359,8 @@ function shareLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             position => {
-                const { latitude, longitude } = position.coords;
-                map.setCenter({ lat: latitude, lng: longitude });
-                map.setZoom(13);
+                // TODO: Implement location sharing without map
+                alert('Location shared successfully!');
             },
             error => {
                 alert('Error getting location: ' + error.message);
